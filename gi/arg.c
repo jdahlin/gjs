@@ -25,6 +25,7 @@
 
 #include "arg.h"
 #include "object.h"
+#include "override.h"
 #include "boxed.h"
 #include "union.h"
 #include "value.h"
@@ -747,6 +748,10 @@ gjs_value_to_g_argument(JSContext      *context,
             GIInfoType interface_type;
             GType gtype;
 
+            if (gjs_arg_override_convert_to_g_argument(context, value, type_info, arg_name,
+                                                       arg_type, transfer, may_be_null, arg))
+                return JS_TRUE;
+
             interface_info = g_type_info_get_interface(type_info);
             g_assert(interface_info != NULL);
 
@@ -1368,6 +1373,9 @@ gjs_value_from_g_argument (JSContext  *context,
             GIInfoType interface_type;
             GType gtype;
 
+            if (gjs_arg_override_convert_from_g_argument(context, value_p, type_info, arg))
+                return JS_TRUE;
+
             interface_info = g_type_info_get_interface(type_info);
             g_assert(interface_info != NULL);
 
@@ -1635,7 +1643,7 @@ gjs_g_arg_release_internal(JSContext  *context,
                            GArgument  *arg)
 {
     JSBool failed;
-    
+
     g_assert(transfer != GI_TRANSFER_NOTHING);
 
     failed = JS_FALSE;
@@ -1674,6 +1682,9 @@ gjs_g_arg_release_internal(JSContext  *context,
             GIBaseInfo* interface_info;
             GIInfoType interface_type;
             GType gtype;
+
+            if (gjs_arg_override_release_g_argument(context, transfer, type_info, arg))
+                return JS_TRUE;
 
             interface_info = g_type_info_get_interface(type_info);
             g_assert(interface_info != NULL);
