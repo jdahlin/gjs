@@ -41,6 +41,7 @@ cairo_t *gjs_cairo_context_get_cr(JSContext *context,
                                   JSObject *object);
 JSObject * gjs_cairo_context_from_cr(JSContext *context,
                                      cairo_t *cr);
+void gjs_cairo_context_init(JSContext *context);
 
 /* surface */
 jsval gjs_cairo_surface_create_proto(JSContext *context, JSObject *module,
