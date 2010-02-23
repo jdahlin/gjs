@@ -1,4 +1,15 @@
 EXTRA_DIST +=			        \
+	examples/cairo/fill.js                 \
+	examples/cairo/mask.js                 \
+	examples/cairo/paint.js                 \
+	examples/cairo/pango.js                 \
+	examples/cairo/path-close.js                 \
+	examples/cairo/poppler-gdk.js                 \
+	examples/cairo/setsourcegradient.js                 \
+	examples/cairo/setsourcergba.js                 \
+	examples/cairo/showtext.js                 \
+	examples/cairo/stroke.js                 \
+	examples/cairo/tips-ellipse.js                 \
 	examples/clutter.js		\
 	examples/gio-cat.js                 \
 	examples/gtk.js                 \
